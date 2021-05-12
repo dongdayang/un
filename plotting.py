@@ -1,9 +1,4 @@
 import streamlit as st
-import pandas as pd
-
-# Plotly imports
-import matplotlib.pyplot as plt
-import numpy as np
 
 
 def plot(excel_file):
