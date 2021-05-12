@@ -1,73 +1,76 @@
 import streamlit as st
-st.set_page_config(layout="wide", page_title='LAS Explorer v.0.1')
+
+st.set_page_config(layout="wide", page_title='数据可视化 v.0.1')
 
 from load_css import local_css
-import lasio
-import missingno as mno
 import pandas as pd
+import numpy as np
 # Local Imports
 import home
 import raw_data
 import plotting
-import header
-import missingdata
-
-from io import StringIO
+import reportting
+import downloading
 
 local_css("style.css")
 
 
-@st.cache
-def load_data(uploaded_file):
+@st.cache(allow_output_mutation=True)
+def load_data(uploaded_file, sheet):
     if uploaded_file is not None:
-        try:
-            bytes_data = uploaded_file.read()
-            str_io = StringIO(bytes_data.decode('Windows-1252'))
-            las_file = lasio.read(str_io)
-            well_data = las_file.df()
-            well_data['DEPTH'] = well_data.index
+        excel_file = pd.read_excel(uploaded_file, sheet_name=sheet)
 
-        except UnicodeDecodeError as e:
-            st.error(f"error loading log.las: {e}")
     else:
-        las_file = None
-        well_data = None
+        excel_file = None
 
-    return las_file, well_data
+    return excel_file
 
 
-#TODO
-def missing_data():
-    st.title('Missing Data')
-    missing_data = well_data.copy()
-    missing = px.area(well_data, x='DEPTH', y='DT')
-    st.plotly_chart(missing)
+def load_sheetname(uploaded_file):
+    if uploaded_file is not None:
+        df = pd.read_excel(uploaded_file, sheet_name=None)
+
+        return list(df)
+
 
 # Sidebar Options & File Uplaod
-las_file=None
-st.sidebar.write('# LAS Data Explorer')
-st.sidebar.write('To begin using the app, load your LAS file using the file upload option below.')
+excel_file = None
+st.sidebar.write('请先上传数据文件')
 
-uploadedfile = st.sidebar.file_uploader(' ', type=['.las'])
-las_file, well_data = load_data(uploadedfile)
-
-if las_file:
-    st.sidebar.success('File Uploaded Successfully')
-    st.sidebar.write(f'<b>Well Name</b>: {las_file.well.WELL.value}',unsafe_allow_html=True)
-
+uploadedfile = st.sidebar.file_uploader(' ', type=['.xlsx'], help='若改变功能，请重新上传文件')
 
 # Sidebar Navigation
-st.sidebar.title('Navigation')
-options = st.sidebar.radio('Select a page:', 
-    ['Home', 'Header Information', 'Data Information', 'Data Visualisation', 'Missing Data Visualisation'])
+st.sidebar.title('导航')
 
-if options == 'Home':
+options = st.sidebar.radio('选择:',
+                           ['主页', '表预览', '图表分析', '自动生成周报'])
+
+if options == '主页':
     home.home()
-elif options == 'Header Information':
-    header.header(las_file)
-elif options == 'Data Information':
-    raw_data.raw_data(las_file, well_data)
-elif options == 'Data Visualisation':
-    plotting.plot(las_file, well_data)
-elif options == 'Missing Data Visualisation':
-    missingdata.missing(las_file, well_data)
+elif options == '表预览':
+    if load_sheetname(uploadedfile) is not None:
+        state_selected = st.selectbox(
+            '选择sheet',
+            load_sheetname(uploadedfile),
+        )
+        excel_file = load_data(uploadedfile, state_selected)
+        raw_data.raw_data(excel_file)
+
+elif options == '图表分析':
+    if load_sheetname(uploadedfile) is not None:
+        state_selected = st.selectbox(
+            '选择sheet',
+            load_sheetname(uploadedfile),
+        )
+        excel_file = load_data(uploadedfile, state_selected)
+        plotting.plot(excel_file)
+elif options == '自动生成周报':
+
+    state_selected = st.selectbox(
+        '预览',
+        ['未选择', '校区满编率', '组织区域满编率', '校区入职离职数据', '组织区域入职离职数据'],
+    )
+    excel_file = load_data(uploadedfile, '在职')
+    excel_file2 = load_data(uploadedfile, '入职')
+    excel_file3 = load_data(uploadedfile, '离职')
+    reportting.report(excel_file, excel_file2, excel_file3, state_selected)
