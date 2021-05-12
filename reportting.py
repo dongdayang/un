@@ -1,6 +1,7 @@
 import base64
 import streamlit as st
 import pandas as pd
+import openpyxl
 import downloading
 
 region = ['上海一区', '上海二区', '上海三区', '上海四区', '上海五区', '上海六区', '上海七区', '上海八区', '上海九区', '上海十区']
