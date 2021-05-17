@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import openpyxl
 import downloading
+import excel_style
 
 region = ['上海一区', '上海二区', '上海三区', '上海四区', '上海五区', '上海六区', '上海七区', '上海八区', '上海九区', '上海十区']
 
@@ -202,6 +203,11 @@ def report(excel_file, excel_file2, excel_file3, state_selected):
                    'SC', 'CR', 'TR', 'VIPTR', 'SDT', '其他', '小计']
     fw4.index.name = '校区'
 
+    fw.to_excel('组织区域满编率.xlsx')
+    fw2.to_excel('校区满编率.xlsx')
+    fw3.to_excel('组织区域入职离职数据.xlsx')
+    fw4.to_excel('校区入职离职数据.xlsx')
+
     if state_selected == '组织区域满编率':
         st.table(fw)
     elif state_selected == '校区满编率':
@@ -211,7 +217,7 @@ def report(excel_file, excel_file2, excel_file3, state_selected):
     elif state_selected == '校区入职离职数据':
         st.table(fw4)
 
-    st.sidebar.markdown(downloading.get_table_download_link(fw, '组织区域满编率', '组织区域满编率'), unsafe_allow_html=True)
-    st.sidebar.markdown(downloading.get_table_download_link(fw2, '校区满编率', '校区满编率'), unsafe_allow_html=True)
-    st.sidebar.markdown(downloading.get_table_download_link(fw3, '组织区域入职离职数据', '组织区域入职离职数据'), unsafe_allow_html=True)
-    st.sidebar.markdown(downloading.get_table_download_link(fw4, '校区入职离职数据', '校区入职离职数据'), unsafe_allow_html=True)
+    excel_style.style1('./组织区域满编率.xlsx')
+    excel_style.style2('./校区满编率.xlsx')
+    excel_style.style3('./组织区域入职离职数据.xlsx')
+    excel_style.style4('./校区入职离职数据.xlsx')

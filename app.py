@@ -1,4 +1,7 @@
 import streamlit as st
+from openpyxl import load_workbook
+
+import excel_style
 from load_css import local_css
 import pandas as pd
 import numpy as np
@@ -63,7 +66,9 @@ elif options == '图表分析':
             load_sheetname(uploadedfile),
         )
         excel_file = load_data(uploadedfile, sheet_selected)
-        plotting.plot(excel_file,sheet_selected)
+        excel_file2 = load_data(uploadedfile, '入职')
+        excel_file3 = load_data(uploadedfile, '离职')
+        plotting.plot(excel_file, excel_file2, excel_file3, sheet_selected)
 elif options == '自动生成周报':
     state_selected = st.selectbox(
         '预览',
