@@ -1,5 +1,4 @@
 import streamlit as st
-from openpyxl import load_workbook
 from load_css import local_css
 import pandas as pd
 import numpy as np
@@ -59,12 +58,12 @@ elif options == '表预览':
 
 elif options == '图表分析':
     if load_sheetname(uploadedfile) is not None:
-        state_selected = st.selectbox(
+        sheet_selected = st.selectbox(
             '选择sheet',
             load_sheetname(uploadedfile),
         )
-        excel_file = load_data(uploadedfile, state_selected)
-        plotting.plot(excel_file)
+        excel_file = load_data(uploadedfile, sheet_selected)
+        plotting.plot(excel_file,sheet_selected)
 elif options == '自动生成周报':
     state_selected = st.selectbox(
         '预览',
