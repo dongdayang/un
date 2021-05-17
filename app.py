@@ -1,17 +1,18 @@
 import streamlit as st
-
-st.set_page_config(layout="wide", page_title='数据可视化 v.0.1')
-
+from openpyxl import load_workbook
 from load_css import local_css
 import pandas as pd
 import numpy as np
-import openpyxl
 # Local Imports
 import home
 import raw_data
 import plotting
 import reportting
+import excel_style
 import downloading
+import openpyxl
+
+st.set_page_config(layout="wide", page_title='数据可视化 v.0.1')
 
 local_css("style.css")
 
@@ -66,10 +67,9 @@ elif options == '图表分析':
         excel_file = load_data(uploadedfile, state_selected)
         plotting.plot(excel_file)
 elif options == '自动生成周报':
-
     state_selected = st.selectbox(
         '预览',
-        ['未选择', '校区满编率', '组织区域满编率', '校区入职离职数据', '组织区域入职离职数据'],
+        ['未选择', '组织区域满编率', '校区满编率', '组织区域入职离职数据', '校区入职离职数据'],
     )
     excel_file = load_data(uploadedfile, '在职')
     excel_file2 = load_data(uploadedfile, '入职')
