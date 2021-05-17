@@ -8,7 +8,6 @@ import home
 import raw_data
 import plotting
 import reportting
-import excel_style
 import downloading
 import openpyxl
 
