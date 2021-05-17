@@ -74,4 +74,5 @@ elif options == '自动生成周报':
     excel_file = load_data(uploadedfile, '在职')
     excel_file2 = load_data(uploadedfile, '入职')
     excel_file3 = load_data(uploadedfile, '离职')
-    reportting.report(excel_file, excel_file2, excel_file3, state_selected)
+    if load_sheetname(uploadedfile) is not None:
+        reportting.report(excel_file, excel_file2, excel_file3, state_selected)
