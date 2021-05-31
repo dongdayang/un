@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import streamlit as st
-import streamlit.components.v1 as components
 
 plt.rcParams['font.family'] = 'Microsoft YaHei' # 用来正常显示中文标签
 plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
