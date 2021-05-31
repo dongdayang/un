@@ -3,7 +3,7 @@ import streamlit as st
 import matplotlib.font_manager as fm
 
 fe = fm.FontEntry(
-    fname=https://github.com/dongdayang/un/blob/main/Microsoft%20YaHei.ttf,
+    fname='./model',
     name='Microsoft YaHei')
 fm.fontManager.ttflist.insert(0, fe) # or append is fine
 
