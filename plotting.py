@@ -1,13 +1,8 @@
 import matplotlib.pyplot as plt
 import streamlit as st
-import matplotlib.font_manager as fm
+import streamlit.components.v1 as components
 
-fe = fm.FontEntry(
-    fname='./app/un/',
-    name='Microsoft YaHei')
-fm.fontManager.ttflist.insert(0, fe) # or append is fine
-
-plt.rcParams['font.family'] = fe.name # 用来正常显示中文标签
+plt.rcParams['font.family'] = 'Microsoft YaHei' # 用来正常显示中文标签
 plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 
 state_selected = None
