@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import streamlit as st
 
-#plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']  # 用来正常显示中文标签
-#plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
+plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']  # 用来正常显示中文标签
+plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 
 state_selected = None
 
