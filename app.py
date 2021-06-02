@@ -12,15 +12,6 @@ import plotting
 import reportting
 import downloading
 import openpyxl
-import matplotlib.font_manager as fm
-import matplotlib.pyplot as plt
-
-fe = fm.FontEntry(
-    fname='.',
-    name='Microsoft-YaHei')
-fm.fontManager.ttflist.insert(0, fe) # or append is fine
-plt.rcParams['font.family'] = fe.name # = 'your custom ttf font name'
-plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 
 st.set_page_config(layout="wide", page_title='数据可视化 v.0.1')
 
