@@ -7,7 +7,7 @@ fe = fm.FontEntry(
     fname='.',
     name='Microsoft-YaHei')
 fm.fontManager.ttflist.insert(0, fe) # or append is fine
-mpl.rcParams['font.family'] = fe.name # = 'your custom ttf font name'
+plt.rcParams['font.family'] = fe.name # = 'your custom ttf font name'
 plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 
 state_selected = None
