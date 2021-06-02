@@ -3,8 +3,8 @@ import streamlit as st
 import matplotlib.font_manager as fm
 
 fe = fm.FontEntry(
-    fname='.',
-    name='Microsoft-YaHei.ttf')
+    fname='./Microsoft-YaHei.ttf',
+    name='Microsoft YaHei')
 fm.fontManager.ttflist.insert(0, fe) # or append is fine
 plt.rcParams['font.family'] = fe.name # = 'your custom ttf font name'
 #plt.rcParams['font.family'] = ['Microsoft-YaHei']  # 用来正常显示中文标签
