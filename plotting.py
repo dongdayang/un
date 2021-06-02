@@ -26,7 +26,7 @@ def plot(excel_file, excel_file2, excel_file3, sheet_selected):
 
         plt.bar(x, y, align='center')
         plt.bar(x1, y1, color='orange', align='center')
-        plt.legend(labels=['入职', '离职'],fontproperties=myfont)  # 图例
+        plt.legend(labels=['入职', '离职'])  # 图例
         plt.title('入职离职招聘直方图',fontproperties=myfont)
         plt.ylabel('入离职数据',fontproperties=myfont)
         plt.xlabel(state)
