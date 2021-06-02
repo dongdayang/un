@@ -4,7 +4,7 @@ import matplotlib as mpl
 import matplotlib.font_manager as fm
 
 fe = fm.FontEntry(
-    fname='.',
+    fname='./Microsoft-YaHei.tff',
     name='Microsoft-YaHei')
 fm.fontManager.ttflist.insert(0, fe) # or append is fine
 plt.rcParams['font.family'] = fe.name # = 'your custom ttf font name'
