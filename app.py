@@ -13,6 +13,7 @@ import reportting
 import downloading
 import openpyxl
 import matplotlib.font_manager as fm
+import matplotlib.pyplot as plt
 
 fe = fm.FontEntry(
     fname='.',
