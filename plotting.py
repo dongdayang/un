@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import matplotlib.font_manager as fm
 
-fm.addfont('./Microsoft-YaHei.tff')
+fm.FontProperties(fname='./Microsoft-YaHei.tff')
 plt.rcParams['font.family'] = ['Microsoft YaHei']  # 用来正常显示中文标签
 plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 
