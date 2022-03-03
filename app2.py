@@ -2,6 +2,7 @@ import streamlit as st
 import plotting2
 import pandas as pd
 import home
+import plotly
 import raw_data
 
 st.set_page_config(layout="wide", page_title='数据分析 v.0.1')
