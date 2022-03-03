@@ -47,7 +47,7 @@ st.sidebar.write('请先上传数据文件')
 
 uploadedfile = st.sidebar.file_uploader(' ', type=['.xlsx', 'csv'], help='若改变功能，请重新上传文件')
 if uploadedfile is not None:
-    typename = uploadedfile.name.split('.')[-1]
+    typename = uploadedfile.name.split('.')[-1].lower()
     if typename == 'xlsx':
         sheetname = load_sheetname(uploadedfile)
 
