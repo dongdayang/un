@@ -1,5 +1,4 @@
 import streamlit as st
-import plotly
 import plotly.graph_objs as go
 
 @st.cache(suppress_st_warning=True)
